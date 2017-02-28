@@ -15,25 +15,22 @@ The goals / steps of this project are the following:
 
 ###1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+In order to identify the lines on the images, I first converted the images to grayscale, then reduced image details by using Gausssian blur. The next step was to use Canny to detect edges on image and defined the region of interest. And lastly, Hough line was used to find the lines on the road. 
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+I calculated the slope of each line to decide if the line was either on the right or left side of the image. 
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
-![alt text][image1]
+And, with all the calculated slopes and center coordinates, I was able to find the bottom and top points of each line and drew the extended lines on the road.
 
 
 ###2. Identify potential shortcomings with your current pipeline
 
+One of the shortcomings can be the region of interest because if the lanes on image did not fit in the region, then the unexpected result might be produced.
 
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
+Another shortcoming is the length of the extended line, if the lane curve is steep, then the pipeline might be too long.
 
 
 ###3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
+Should find the region of interest dynamically by removing meaningless edges from the image and fine the region near by the lanes.
 
-Another potential improvement could be to ...
+Also, find the top coordinates of the lanes so that the pipeline does not go over the top points.
